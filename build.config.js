@@ -12,25 +12,25 @@ module.exports = {
 
   /**
    * This is a collection of file patterns that refer to our app code (the
-   * stuff in `src/`). These file paths are used in the configuration of
+   * stuff in `web/`). These file paths are used in the configuration of
    * build tasks. `js` is all project javascript, less tests. `ctpl` contains
-   * our reusable components' (`src/common`) template HTML files, while
+   * our reusable components' (`web/common`) template HTML files, while
    * `atpl` contains the same, but for our app's code. `html` is just our
    * main HTML file, `less` is our main stylesheet, and `unit` contains our
    * app's unit tests.
    */
   app_files: {
-    js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
-    jsunit: [ 'src/**/*.spec.js' ],
+    js: [ 'web/**/*.js', '!web/**/*.spec.js', '!web/assets/**/*.js' ],
+    jsunit: [ 'web/**/*.spec.js' ],
     
-    coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
-    coffeeunit: [ 'src/**/*.spec.coffee' ],
+    coffee: [ 'web/**/*.coffee', '!web/**/*.spec.coffee' ],
+    coffeeunit: [ 'web/**/*.spec.coffee' ],
 
-    atpl: [ 'src/app/**/*.tpl.html' ],
-    ctpl: [ 'src/common/**/*.tpl.html' ],
+    atpl: [ 'web/app/**/*.tpl.html' ],
+    ctpl: [ 'web/common/**/*.tpl.html' ],
 
-    html: [ 'src/index.html' ],
-    less: 'src/less/main.less'
+    html: [ 'web/index.html' ],
+    less: 'web/less/main.less'
   },
 
   /**

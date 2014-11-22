@@ -103,7 +103,7 @@ module.exports = function ( grunt ) {
           { 
             src: [ '**' ],
             dest: '<%= build_dir %>/assets/',
-            cwd: 'src/assets',
+            cwd: 'web/assets',
             expand: true
           }
        ]   
@@ -177,7 +177,7 @@ module.exports = function ( grunt ) {
         src: [ 
           '<%= vendor_files.js %>', 
           'module.prefix', 
-          '<%= build_dir %>/src/**/*.js', 
+          '<%= build_dir %>/web/**/*.js',
           '<%= html2js.app.dest %>', 
           '<%= html2js.common.dest %>', 
           'module.suffix' 
@@ -265,7 +265,7 @@ module.exports = function ( grunt ) {
      * are linted based on the policies listed in `options`. But we can also
      * specify exclusionary patterns by prefixing them with an exclamation
      * point (!); this is useful when code comes from a third party but is
-     * nonetheless inside `src/`.
+     * nonetheless inside `web/`.
      */
     jshint: {
       src: [ 
@@ -315,22 +315,22 @@ module.exports = function ( grunt ) {
      */
     html2js: {
       /**
-       * These are the templates from `src/app`.
+       * These are the templates from `web/app`.
        */
       app: {
         options: {
-          base: 'src/app'
+          base: 'web/app'
         },
         src: [ '<%= app_files.atpl %>' ],
         dest: '<%= build_dir %>/templates-app.js'
       },
 
       /**
-       * These are the templates from `src/common`.
+       * These are the templates from `web/common`.
        */
       common: {
         options: {
-          base: 'src/common'
+          base: 'web/common'
         },
         src: [ '<%= app_files.ctpl %>' ],
         dest: '<%= build_dir %>/templates-common.js'
@@ -363,13 +363,13 @@ module.exports = function ( grunt ) {
        * During development, we don't want to have wait for compilation,
        * concatenation, minification, etc. So to avoid these steps, we simply
        * add all script files directly to the `<head>` of `index.html`. The
-       * `src` property contains the list of included files.
+       * `web` property contains the list of included files.
        */
       build: {
         dir: '<%= build_dir %>',
         src: [
           '<%= vendor_files.js %>',
-          '<%= build_dir %>/src/**/*.js',
+          '<%= build_dir %>/web/**/*.js',
           '<%= html2js.common.dest %>',
           '<%= html2js.app.dest %>',
           '<%= vendor_files.css %>',
@@ -469,7 +469,7 @@ module.exports = function ( grunt ) {
        */
       assets: {
         files: [ 
-          'src/assets/**/*'
+          'web/assets/**/*'
         ],
         tasks: [ 'copy:build_app_assets', 'copy:build_vendor_assets' ]
       },
@@ -497,7 +497,7 @@ module.exports = function ( grunt ) {
        * When the CSS files change, we need to compile and minify them.
        */
       less: {
-        files: [ 'src/**/*.less' ],
+        files: [ 'web/**/*.less' ],
         tasks: [ 'less:build' ]
       },
 
@@ -599,7 +599,7 @@ module.exports = function ( grunt ) {
       return file.replace( dirRE, '' );
     });
 
-    grunt.file.copy('src/index.html', this.data.dir + '/index.html', { 
+    grunt.file.copy('web/index.html', this.data.dir + '/index.html', {
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {
